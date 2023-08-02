@@ -114,41 +114,114 @@ import "./index.css";
 
 //So in the following code 4 different components are going to be created: Author, Title, Image, Book and Bookstore.
 
-const Title = () => {
-   const title = "given title";
-  return (
-    <h2> {title}</h2>
-  );
+// const Title = () => {
+//    const title = "given title";
+//   return (
+//     <h2> {title}</h2>
+//   );
+// };
+
+// const Image = () => {
+//   return (
+//     // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+//     <img
+//       src="./images/local_image.jpg"
+//       //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
+//       //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
+//       //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
+//       alt="new"
+//     />
+//   );
+// };
+
+// const Author = () => {
+//   const inlineHeadingStyle = { color: "green" };
+//   return <div style={inlineHeadingStyle}>index</div>;
+// };
+
+// const Book = (props) => {
+//   console.log(props)
+//   return (
+//     <div className="book">
+//       <Image />
+//       <Author />
+//       <Title />
+//       <p>{props.job}</p>
+//       <p>{props.title}</p>
+//       <p>{props.number}</p>
+//     </div>
+//   );
+// };
+
+// const BookList = () => {
+//   return (
+//     <div className="booklist">
+//       <Book job='developer'/>
+//       <Book job='developer' title='a title cool' number={22}/>
+//       <Book />
+//       <Book />
+//       <Book />
+//     </div>
+//   );
+// };
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<BookList />);
+
+
+
+//Objects! For example called from an API...
+const firstBook = {
+  author: 'Jordan Moore',
+  title: 'Interesting Facts F',
+  img: './images/local_image.jpg',
+}
+const secondBook = {
+  author: "Jordan Moore second",
+  title: "Interesting Facts F2",
+  img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+};
+const thirdBook = {
+  author: "Jordan Moore third",
+  title: "Interesting Facts F3",
+  img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+};
+const fourthBook = {
+  author: "Jordan Moore fourth",
+  title: "Interesting Facts F4",
+  img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
 };
 
-const Image = () => {
-  return (
-    // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
-    <img
-      src="./images/local_image.jpg"
-      //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
-      //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
-      //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
-      alt="new"
-    />
-  );
-};
+// const Title = () => {
+//   const title = "given title";
+//   return <h2> {title}</h2>;
+// };
 
-const Author = () => {
-  const inlineHeadingStyle = { color: "green" };
-  return <div style={inlineHeadingStyle}>index</div>;
-};
+// const Image = (props) => {
+//   console.log('Image '+{props})
+//   return (
+//     // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+//     <img src={props.img}
+//       //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
+//       //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
+//       //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
+//       alt="new"
+//     />
+//   );
+// };
+
+// const Author = () => {
+//   const inlineHeadingStyle = { color: "green" };
+//   return <div style={inlineHeadingStyle}>index</div>;
+// };
 
 const Book = (props) => {
-  console.log(props)
+  console.log(props);
+  const { img, title, author } = props.bookObject;
   return (
     <div className="book">
-      <Image />
-      <Author />
-      <Title />
-      <p>{props.job}</p>
-      <p>{props.title}</p>
-      <p>{props.number}</p>
+      <img src = {img} alt='caca'/>
+      <h2>{title}</h2>
+      <p>{author}</p>
     </div>
   );
 };
@@ -156,11 +229,11 @@ const Book = (props) => {
 const BookList = () => {
   return (
     <div className="booklist">
-      <Book job='developer'/>
-      <Book job='developer' title='a title cool' number={22}/>
-      <Book />
-      <Book />
-      <Book />
+      <Book bookObject = {firstBook} />
+      <Book bookObject = {secondBook} />
+      <Book bookObject = {thirdBook} />
+      <Book bookObject = {fourthBook} />
+      
     </div>
   );
 };
