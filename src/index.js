@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import './index.css';
+import "./index.css";
 // function Greeting() {
 //   return <h2> My first component</h2>
 // }
@@ -115,40 +115,54 @@ import './index.css';
 //So in the following code 4 different components are going to be created: Author, Title, Image, Book and Bookstore.
 
 const Title = () => {
-  return <h2> THIS IS A TITLE you can do how u like</h2>;
+   const title = "given title";
+  return (
+    <h2> {title}</h2>
+  );
 };
 
 const Image = () => {
   return (
-    <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+    // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+    <img
+      src="./images/local_image.jpg"
+      //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
+      //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
+      //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
+      alt="new"
+    />
   );
 };
 
 const Author = () => {
-  return <div>index</div>;
+  const inlineHeadingStyle = { color: "green" };
+  return <div style={inlineHeadingStyle}>index</div>;
 };
 
-const Book = () => {
+const Book = (props) => {
+  console.log(props)
   return (
-    <div className = 'book'>
+    <div className="book">
       <Image />
       <Author />
       <Title />
+      <p>{props.job}</p>
+      <p>{props.title}</p>
+      <p>{props.number}</p>
     </div>
   );
-
-
 };
 
 const BookList = () => {
   return (
     <div className="booklist">
-      <Book />
+      <Book job='developer'/>
+      <Book job='developer' title='a title cool' number={22}/>
       <Book />
       <Book />
       <Book />
     </div>
   );
-}
+};
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BookList />);
