@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import './index.css';
 // function Greeting() {
 //   return <h2> My first component</h2>
 // }
@@ -84,7 +84,7 @@ import ReactDOM from "react-dom/client";
 //If we did not have it...this does not work
 
 // function Greeting() {
-//   return 
+//   return
 //     <React.Fragment>
 //       <div>
 //         <div>
@@ -99,17 +99,56 @@ import ReactDOM from "react-dom/client";
 
 //Without parentesis we need that the opening of the first element stays on the same
 //line as the return statement :)
-function Greeting() {
-  return <React.Fragment>
-      <div>
-        <div>
-          <h2> My first component</h2>
-        </div>
-        <h1>hello</h1>
-      </div>
-      <h2 className="RedCoolText">Cool section</h2>
-    </React.Fragment>
-  ;
+// function Greeting() {
+//   return <React.Fragment>
+//       <div>
+//         <div>
+//           <h2> My first component</h2>
+//         </div>
+//         <h1>hello</h1>
+//       </div>
+//       <h2 className="RedCoolText">Cool section</h2>
+//     </React.Fragment>
+//   ;
+// }
+
+//So in the following code 4 different components are going to be created: Author, Title, Image, Book and Bookstore.
+
+const Title = () => {
+  return <h2> THIS IS A TITLE you can do how u like</h2>;
+};
+
+const Image = () => {
+  return (
+    <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+  );
+};
+
+const Author = () => {
+  return <div>index</div>;
+};
+
+const Book = () => {
+  return (
+    <div className = 'book'>
+      <Image />
+      <Author />
+      <Title />
+    </div>
+  );
+
+
+};
+
+const BookList = () => {
+  return (
+    <div className="booklist">
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+    </div>
+  );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Greeting />);
+root.render(<BookList />);
