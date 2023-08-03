@@ -167,75 +167,126 @@ import "./index.css";
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(<BookList />);
 
-
-
 //Objects! For example called from an API...
-const firstBook = {
-  author: 'Jordan Moore',
-  title: 'Interesting Facts F',
-  img: './images/local_image.jpg',
-}
-const secondBook = {
-  author: "Jordan Moore second",
-  title: "Interesting Facts F2",
-  img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
-};
-const thirdBook = {
-  author: "Jordan Moore third",
-  title: "Interesting Facts F3",
-  img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
-};
-const fourthBook = {
-  author: "Jordan Moore fourth",
-  title: "Interesting Facts F4",
-  img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
-};
-
-// const Title = () => {
-//   const title = "given title";
-//   return <h2> {title}</h2>;
+// const firstBook = {
+//   author: 'Jordan Moore',
+//   title: 'Interesting Facts F',
+//   img: './images/local_image.jpg',
+// }
+// const secondBook = {
+//   author: "Jordan Moore second",
+//   title: "Interesting Facts F2",
+//   img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+// };
+// const thirdBook = {
+//   author: "Jordan Moore third",
+//   title: "Interesting Facts F3",
+//   img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+// };
+// const fourthBook = {
+//   author: "Jordan Moore fourth",
+//   title: "Interesting Facts F4",
+//   img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
 // };
 
-// const Image = (props) => {
-//   console.log('Image '+{props})
+// // const Title = () => {
+// //   const title = "given title";
+// //   return <h2> {title}</h2>;
+// // };
+
+// // const Image = (props) => {
+// //   console.log('Image '+{props})
+// //   return (
+// //     // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
+// //     <img src={props.img}
+// //       //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
+// //       //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
+// //       //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
+// //       alt="new"
+// //     />
+// //   );
+// // };
+
+// // const Author = () => {
+// //   const inlineHeadingStyle = { color: "green" };
+// //   return <div style={inlineHeadingStyle}>index</div>;
+// // };
+
+// const Book = (props) => {
+//   console.log(props);
+//   const { img, title, author } = props.bookObject;
+//   const { children } = props
 //   return (
-//     // <img src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg" alt='main from book' />
-//     <img src={props.img}
-//       //WHATEVER WE PUT IN THE PUBLIC, IT CAN BE ACESSED! IS PUBLIC1
-//       //NOT A POPULAR OPTION SINCE ASSETS IN PUBLIC FOLDER DON'T GET OPTIMIZED!
-//       //MORE EFFICIENT TO PUT THEM IN SRC FOLDER
-//       alt="new"
-//     />
+//     <div className="book">
+//       <img src = {img} alt='caca'/>
+//       <h2>{title}</h2>
+//       <p>{author}</p>
+//       {children}
+//     </div>
 //   );
 // };
 
-// const Author = () => {
-//   const inlineHeadingStyle = { color: "green" };
-//   return <div style={inlineHeadingStyle}>index</div>;
+// const BookList = () => {
+//   return (
+//     <div className="booklist">
+//       <Book bookObject = {firstBook} />
+//       <Book bookObject = {secondBook} />
+//       <Book bookObject = {thirdBook} />
+//       <Book bookObject = {fourthBook}>
+//         <p>lorem <button>click me</button></p>
+//       </Book>
+
+//     </div>
+//   );
 // };
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<BookList />);
+
+//But what if the objects come in a list? Like they usually do...?
+const listOfBooks = [
+  {
+    author: "Jordan Moore",
+    title: "Interesting Facts F",
+    img: "./images/local_image.jpg",
+  },
+  {
+    author: "Jordan Moore second",
+    title: "Interesting Facts F2",
+    img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+  },
+  {
+    author: "Jordan Moore third",
+    title: "Interesting Facts F3",
+    img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+  },
+  {
+    author: "Jordan Moore fourth",
+    title: "Interesting Facts F4",
+    img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
+  },
+];
 
 const Book = (props) => {
   console.log(props);
-  const { img, title, author } = props.bookObject;
+  const { img, title, author } = props;
+  const { children } = props;
   return (
     <div className="book">
-      <img src = {img} alt='caca'/>
+      <img src={img} alt="caca" />
       <h2>{title}</h2>
       <p>{author}</p>
+      {children}
     </div>
   );
 };
 
+
 const BookList = () => {
-  return (
-    <div className="booklist">
-      <Book bookObject = {firstBook} />
-      <Book bookObject = {secondBook} />
-      <Book bookObject = {thirdBook} />
-      <Book bookObject = {fourthBook} />
-      
-    </div>
-  );
+  
+  return <section>{listOfBooks.map((book) => {
+    const {img, title, author} = book;
+    return <Book img={img} title={title} author = {author} />;
+  })}</section>;
 };
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BookList />);
