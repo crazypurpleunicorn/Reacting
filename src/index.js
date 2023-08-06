@@ -394,6 +394,7 @@ const Book = (props) => {
       <h2>{title}</h2>
       <p>{author}</p>
       <p>{id}</p>
+      <button onClick={()=>{alert(title)}}>display title</button>
       {children}
     </div>
   );
