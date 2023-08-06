@@ -243,50 +243,195 @@ import "./index.css";
 // root.render(<BookList />);
 
 //But what if the objects come in a list? Like they usually do...?
+// const listOfBooks = [
+//   {
+//     author: "Jordan Moore",
+//     title: "Interesting Facts F",
+//     img: "./images/local_image.jpg",
+//     id: 1,
+//   },
+//   {
+//     author: "Jordan Moore second",
+//     title: "Interesting Facts F2",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+//     id: 2,
+//   },
+//   {
+//     author: "Jordan Moore third",
+//     title: "Interesting Facts F3",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+//     id: 3,
+//   },
+//   {
+//     author: "Jordan Moore fourth",
+//     title: "Interesting Facts F4",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
+//     id: 4,
+//   },
+// ];
+
+// const Book = (props) => {
+//   console.log(props);
+//   const { img, title, author } = props;
+//   const { children } = props;
+//   return (
+//     <div className="book">
+//       <img src={img} alt="caca" />
+//       <h2>{title}</h2>
+//       <p>{author}</p>
+//       {children}
+//     </div>
+//   );
+// };
+
+// const BookList = () => {
+
+//   return <section>{listOfBooks.map((book) => {
+//     const {img, title, author} = book;
+//     return <Book img={img} title={title} author = {author} />;
+//   })}</section>;
+// };
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<BookList />);
+
+//Imagine an object with many many attributes...
+// you can see that the deconstructing of that object takes some time, you have to wrtie all attributes manually down...
+// then the prop assembles all of them together in the props object...So we have to reconstruct them again
+//sounds like a lot of work to me(l333,349,350)
+
+// Two options: 1. Pass the object as a whole  or 2.Use the spread operator.
+
+//1.
+// 1.1
+// const listOfBooks = [
+//   {
+//     author: "Jordan Moore",
+//     title: "Interesting Facts F",
+//     img: "./images/local_image.jpg",
+//     id: 1,
+//   },
+//   {
+//     author: "Jordan Moore second",
+//     title: "Interesting Facts F2",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+//     id: 2,
+//   },
+//   {
+//     author: "Jordan Moore third",
+//     title: "Interesting Facts F3",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+//     id: 3,
+//   },
+//   {
+//     author: "Jordan Moore fourth",
+//     title: "Interesting Facts F4",
+//     img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
+//     id: 4,
+//   },
+// ];
+
+// const Book = (props) => {
+//   console.log(props);
+//   const { img, title, author, id } = props.book;
+//   const { children } = props;
+//   return (
+//     <div className="book">
+//       <img src={img} alt="caca" />
+//       <h2>{title}</h2>
+//       <p>{author}</p>
+//       <p>{id}</p>
+//       {children}
+//     </div>
+//   );
+// };
+
+// const BookList = () => {
+//   return (
+//     <section>
+//       {listOfBooks.map((book) => {
+//         return <Book book = {book} />;
+//       })}
+//     </section>
+//   );
+// };
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<BookList />);
+// 2 {...book} spread operator
 const listOfBooks = [
   {
     author: "Jordan Moore",
     title: "Interesting Facts F",
     img: "./images/local_image.jpg",
+    id: 1,
   },
   {
     author: "Jordan Moore second",
     title: "Interesting Facts F2",
     img: "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL600_SR600,400_.jpg",
+    id: 2,
   },
   {
     author: "Jordan Moore third",
     title: "Interesting Facts F3",
     img: "https://images-na.ssl-images-amazon.com/images/I/71bBKivYGZL._AC_UL600_SR600,400_.jpg",
+    id: 3,
   },
   {
     author: "Jordan Moore fourth",
     title: "Interesting Facts F4",
     img: "https://images-na.ssl-images-amazon.com/images/I/91XPKk96LXL._AC_UL600_SR600,400_.jpg",
+    id: 4,
   },
 ];
 
 const Book = (props) => {
   console.log(props);
-  const { img, title, author } = props;
+  const { img, title, author, id } = props;
   const { children } = props;
   return (
     <div className="book">
       <img src={img} alt="caca" />
       <h2>{title}</h2>
       <p>{author}</p>
+      <p>{id}</p>
       {children}
     </div>
   );
 };
 
-
 const BookList = () => {
-  
-  return <section>{listOfBooks.map((book) => {
-    const {img, title, author} = book;
-    return <Book img={img} title={title} author = {author} />;
-  })}</section>;
+  return (
+    <section>
+      <EventExample />
+      {listOfBooks.map((book) => {
+        return <Book {...book} otheobject = 'hola'/>;
+      })}
+    </section>
+  );
 };
+
+const EventExample = () => {
+   const handleFormInput = (e) => {
+     console.log("handle form input");
+     console.log(e)
+   };
+   const handleButtonClick = () => {
+     alert("handle button click");
+   };
+   const handleFormSubmission = (e) => {
+    e.preventDefault();
+    console.log('form submitted')
+   }
+  return (  
+    <section>
+      <form onSubmit={handleFormSubmission}>
+        <h2>Typical form</h2>
+        <input type="text" name="example" style={{margin: '1rem 0'}} onChange={handleFormInput}/>
+      </form>
+      <button onClick={handleButtonClick}>click me</button>
+    </section>
+  )
+}
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BookList />);
+
